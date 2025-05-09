@@ -1,0 +1,209 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient icon-with-text-wrapper {% unless section.settings.background_style == 'none' and settings.text_boxes_border_thickness > 0 or settings.text_boxes_shadow_opacity > 0 %} background-{{ section.settings.background_style }}{% endunless %}">
+  <div class="page-width section-{{ section.id }}-padding">
+    {%- unless section.settings.title == blank -%}
+      <div class="title-wrapper-with-link title-wrapper--self-padded-mobile title-wrapper--no-top-margin multicolumn__title">
+        <h2 class="title inline-richtext {{ section.settings.heading_size }}">
+          {{ section.settings.title }}
+        </h2>
+      </div>
+    {%- endunless -%}
+    <ul class="icon_with_text_items list contains-content-container grid grid--{{ section.settings.columns_mobile }}-col-tablet-down grid--{{ section.settings.columns_desktop }}-col-desktop">
+      {% for block in section.blocks %}
+        <li class="icon_with_text_item grid__item {% if section.settings.column_alignment == 'center' %} center{% endif %}">
+          <div class="icon_with_text_item_wrapper">
+            {% if block.settings.icon_with_text_item_image != blank %}
+            <div class="icon_with_text_item_image icon_with_text_item_image-spacing">
+              <img src="{{ block.settings.icon_with_text_item_image | img_url: "60x60" }}" alt="{{ block.settings.icon_with_text_item_image.alt }}"
+                   width="{{ block.settings.icon_with_text_item_image.width }}" height="{{ block.settings.icon_with_text_item_image.height }}">
+            </div>
+            {% endif %}
+            <div class="icon_with_text_item_info">
+              {% if block.settings.icon_with_text_item_heading != blank %}
+              <div class="icon_with_text_item_heading">
+                <h3 class="heading inline-richtext">{{ block.settings.icon_with_text_item_heading }}</h3>
+              </div>
+              {% endif %}
+              {% if block.settings.icon_with_text_item_description != blank %}
+              <div class="icon_with_text_item_description rte">
+                {{ block.settings.icon_with_text_item_description }}
+              </div>
+              {% endif %}
+            </div>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Icon With Text",
+    "tag": "section",
+    "class": "section section_icon-with-text",
+    "settings": [
+      {
+        "type": "inline_richtext",
+        "id": "title",
+        "label": "t:sections.multicolumn.settings.title.label"
+      },
+      {
+        "type": "select",
+        "id": "heading_size",
+        "options": [
+          {
+            "value": "h2",
+            "label": "t:sections.all.heading_size.options__1.label"
+          },
+          {
+            "value": "h1",
+            "label": "t:sections.all.heading_size.options__2.label"
+          },
+          {
+            "value": "h0",
+            "label": "t:sections.all.heading_size.options__3.label"
+          },
+          {
+            "value": "hxl",
+            "label": "t:sections.all.heading_size.options__4.label"
+          },
+          {
+            "value": "hxxl",
+            "label": "t:sections.all.heading_size.options__5.label"
+          }
+        ],
+        "default": "h1",
+        "label": "t:sections.all.heading_size.label"
+      },
+      {
+        "type": "select",
+        "id": "background_style",
+        "options": [
+          {
+            "value": "none",
+            "label": "t:sections.multicolumn.settings.background_style.options__1.label"
+          },
+          {
+            "value": "primary",
+            "label": "t:sections.multicolumn.settings.background_style.options__2.label"
+          }
+        ],
+        "default": "primary",
+        "label": "t:sections.multicolumn.settings.background_style.label"
+      },
+      {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "t:sections.all.colors.label",
+        "default": "scheme-1"
+      },
+      {
+        "type": "range",
+        "id": "columns_desktop",
+        "min": 1,
+        "max": 6,
+        "step": 1,
+        "default": 3,
+        "label": "t:sections.multicolumn.settings.columns_desktop.label"
+      },
+      {
+        "type": "select",
+        "id": "column_alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "t:sections.multicolumn.settings.column_alignment.options__1.label"
+          },
+          {
+            "value": "center",
+            "label": "t:sections.multicolumn.settings.column_alignment.options__2.label"
+          }
+        ],
+        "default": "left",
+        "label": "t:sections.multicolumn.settings.column_alignment.label"
+      },
+      {
+        "type": "select",
+        "id": "columns_mobile",
+        "options": [
+          {
+            "value": "1",
+            "label": "t:sections.multicolumn.settings.columns_mobile.options__1.label"
+          },
+          {
+            "value": "2",
+            "label": "t:sections.multicolumn.settings.columns_mobile.options__2.label"
+          }
+        ],
+        "default": "1",
+        "label": "t:sections.multicolumn.settings.columns_mobile.label"
+      },
+      {
+        "type": "header",
+        "content": "t:sections.all.padding.section_padding_heading"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_top",
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_bottom",
+        "default": 36
+      }
+    ],
+    "blocks": [
+      {
+        "type": "icon-and-text",
+        "name": "Icon and Text",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "icon_with_text_item_image",
+            "label": "Icon"
+          },
+          {
+            "type": "inline_richtext",
+            "id": "icon_with_text_item_heading",
+            "label": "Heading"
+          },
+          {
+            "type": "richtext",
+            "id": "icon_with_text_item_description",
+            "label": "Description"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Icon With Text"
+      }
+    ]
+  }
+{% endschema %}

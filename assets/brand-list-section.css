@@ -1,0 +1,49 @@
+.brand-list-section {
+    background: var(--bg-color);
+    color: var(--text-color);
+    padding-top: var(--PT);
+    padding-bottom: var(--PB);
+}
+
+.brand-list-section h2 {
+  color: var(--text-color);
+}
+
+.brand-list-content {
+  width: 100%;
+}
+
+.brand-list-slider .brand-list-item img {
+    width: auto;
+    height: auto;
+    max-height: 50px;
+    display: block;
+    margin: : 0 auto;
+}
+
+.brand-list-heading {
+    margin: 0 0 50px;
+}
+
+.brand-list-slider {
+  width: 100%;
+  pointer-events: none;
+}
+.brand-list-slider .swiper-wrapper {
+  transition-timing-function: linear !important;
+  align-items: center;
+}
+.brand-list-slider .brand-list-item {
+  width: auto;
+  max-width: 250px;
+}
+
+
+
+@media screen and (max-width: 749px) {
+  
+  .testimonial-slider .quote-box {
+    font-size: 14px;
+  }
+
+}

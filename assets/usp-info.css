@@ -1,0 +1,41 @@
+.usp-info-section {
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+
+.usp-info-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: space-between;
+}
+
+.usp-info-list .usp-info-item {
+  width: auto;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.usp-info-list .usp-info-item .usp-info-icon {
+  width: 50px;
+  min-width: 50px;
+}
+
+.usp-info-list .usp-info-item h5 {
+  margin: 0;
+  font-family: inherit;
+  color: var(--heading-color);
+  font-weight: 600;
+}
+
+.usp-info-list .usp-info-item p {
+  margin: 0;
+  font-size: 12px;
+
+}
+
+.usp-info-list .usp-info-item .usp-info-icon svg {
+  height: auto;
+  display: block;
+}

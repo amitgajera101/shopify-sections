@@ -1,0 +1,217 @@
+body {
+  letter-spacing: 0px;
+}
+
+h1, h2, h3, h4, h5, .h0, .h1, .h2, .h3, .h4, .h5 {
+  letter-spacing: 0px;
+}
+
+img {
+  max-width: 100%;
+}
+
+.section-title {
+  text-align: center;
+  margin: 0 0 40px;
+}
+
+.section-title h2 {
+  margin: 0;
+  font-size: 40px;
+  color: inherit;
+}
+
+.section-title .pre_title {
+  display: block;
+  margin: 0 0 5px;
+  font-size: 16px;
+}
+
+
+
+/*  header css */
+
+.header .header__icons .header__icon--cart {
+  display: none;
+}
+
+.header--top-center .header__inline-menu {
+  width: 100%;
+}
+
+.header--top-center .header__inline-menu ul.list-menu {
+  width: 100%;
+  gap: 70px;
+}
+
+.header .list-menu > li > a {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none !important;
+  border: none !important;
+  padding: 0px;
+}
+
+.header .list-menu > li > a span {
+  text-decoration: inherit;
+}
+
+.announcement-bar__message {
+  font-family: var(--font-body-family);
+  color: gold;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.button:not(.button--secondary) {
+  background: #607090;
+  color: #fff;
+  transition: all 0.3s;
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+.button:not(.button--secondary):before,
+.button:not(.button--secondary):after {
+  display: none;
+}
+
+.button:not(.button--secondary):hover,
+.button:not(.button--secondary):focus {
+  background: #343f56;
+  color: #fff;
+}
+
+.swiper-pagination-bullet-active {
+  background: #607090;
+}
+
+
+
+/* footer css */
+
+.footer .footer-block .footer-block--newsletter {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer .footer-block__brand-info {
+    max-width: 250px;
+}
+
+.footer .footer-block__brand-info .rte {
+    font-size: 12px;
+}
+
+.footer .footer__blocks-wrapper .footer-block--menu {
+    width: calc(20% - var(--grid-desktop-horizontal-spacing) * 3 / 4);
+}
+
+.footer .footer__blocks-wrapper .footer-block.footer-block--newsletter {
+    width: calc(35% - var(--grid-desktop-horizontal-spacing) * 3 / 4);
+    padding-left: 50px;
+    border-left: 1px solid rgba(255,255,255,0.15);
+    margin-top: 0px;
+}
+
+.footer .footer-block.footer-block--newsletter {
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.footer .footer-block.footer-block--newsletter .footer-block--newsletter-widget {
+  width: 100%;
+}
+
+.footer .footer-block--newsletter .footer__list-social {
+  justify-content: flex-start;
+  margin-top: 20px;
+}
+
+.footer .footer-block--newsletter .footer__list-social .list-social__item:first-child a {
+  padding-left: 0;
+}
+
+.footer .footer__content-bottom .footer__content-bottom-wrapper {
+  justify-content: space-between;
+  text-align: left;
+}
+
+.footer .footer__content-bottom .footer__copyright {
+  margin-top: 0;
+}
+
+.footer .footer__content-bottom {
+  padding: 20px 0 20px;
+  background: rgba(255,255,255,0.05);
+  border: none;
+}
+
+.footer__content-bottom-wrapper .footer__payment {
+  margin: 0;
+}
+
+.footer .newsletter-form__field-wrapper .field {
+  border: 1px solid;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.footer .newsletter-form__field-wrapper .field:before, .footer .newsletter-form__field-wrapper .field:after {
+  display: none;
+}
+
+.footer .newsletter-form__field-wrapper .field input:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.footer .newsletter-form__field-wrapper .field .newsletter-form__button {
+  background: #fff;
+  color: #000;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-top: 8px;
+}
+
+.footer .newsletter-form__field-wrapper .field .field__input, 
+.footer .newsletter-form__field-wrapper .field .field__label {
+  font-size: 12px;
+}
+
+.footer .newsletter-form__field-wrapper .field .field__label {
+  top: 14px;
+}
+.footer .newsletter-form__field-wrapper .field .field__input:focus ~ .field__label, 
+.footer .newsletter-form__field-wrapper .field .field__input:not(:placeholder-shown) ~ .field__label, 
+.footer .newsletter-form__field-wrapper .field .field__input:-webkit-autofill ~ .field__label {
+ top: 4px;
+}
+
+/* global */
+
+.blog .blog__title {
+  text-align: center;
+  width: 100%;
+  color: #607090;
+}
+
+.full-banner-section img {
+  width: 100%;
+}
+
+
+@media screen and (min-width: 750px) {
+  .desktop-hide {
+    display: none !important;
+  }  
+}
+
+@media screen and (max-width: 749px) {
+  .mobile-hide {
+    display: none !important;
+  }  
+}

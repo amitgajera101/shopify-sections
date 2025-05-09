@@ -1,0 +1,74 @@
+{{ 'heading-with-text.css' | asset_url | stylesheet_tag }}
+{% style  %}
+    #section-{{section.id}} {
+        --bg-color:{{ section.settings.bg_color}};
+        --heading-color:{{ section.settings.heading_color}};
+        --text-color:{{ section.settings.text_color}};
+    }
+    
+{% endstyle %}
+ {%- liquid
+    assign height = auto
+    assign sizes = '100vw'
+    assign widths = '375, 550,750,950,1150,1250,1450,1650,1850,2250,2550,3850,5500'
+    assign fetch_priority = 'high'
+  -%}
+
+{% if section.settings.title != blank  %}
+  <div class="heading-with-text-section" id="section-{{ section.id }}">
+    <div class="hwt-title {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+      <h2>{{ section.settings.title }}</h2>
+    </div>
+    {% if section.settings.image != blank %}
+    <div class="hwt-image {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+      {{
+          section.settings.image
+          | image_url: width: 5500
+          | image_tag: height: height, sizes: sizes, widths: widths, fetchpriority: fetch_priority
+      }}
+    </div>
+   {% endif %}
+  </div>
+{% endif %}
+{% schema %}
+  {
+    "name": "Heading with Image",
+    "limit":1,
+    "settings": [
+      {
+        "type":"textarea",
+        "id":"title",
+        "label":"Section Heading",
+        "default":"Heading"
+      },
+      {
+        "type":"image_picker",
+        "id":"image",
+        "label":"Background shape Image"
+      },
+      {
+          "type":"color",
+          "id":"bg_color",
+          "label":"Backgrpund Color",
+          "default": "#ffffff"
+      },
+      {
+          "type":"color",
+          "id":"heading_color",
+          "label":"Heading Color",
+          "default": "#607090"
+      },
+      {
+          "type":"color",
+          "id":"text_color",
+          "label":"Text Color",
+          "default": "#000000"
+      }
+    ],
+    "presets": [
+      {
+        "name":"Heading with Image"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,115 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body, 
+body .color-scheme-1, 
+body .color-scheme-2, 
+body .color-scheme-3, 
+body .color-scheme-4, 
+body .color-scheme-5, 
+body .color-scheme-667cfd55-cb02-4c35-83fd-3a0c3145912a {
+  color: rgba(var(--color-foreground), 1);
+}
+
+body .page-width {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.page-section .page-title {
+  margin: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.button {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  padding: 12px 20px;
+  transition: all 0.3s;
+  min-width: 170px;
+}
+
+.button::before,
+.button::after {
+  content: none;
+}
+
+.button.button--primary {
+  background: #607090;
+  color: #FFFFFF;
+}
+
+.button.button--primary:hover {
+  background: #343f56;
+}
+
+.button.button--secondary {
+  border: 1px solid #607090;
+  color: #607090;
+}
+
+.button.button--secondary:hover {
+  background: #343f56;
+  color: #FFFFFF;
+  border-color: #343f56;
+}
+
+body .sr_banner .banner__content {
+  padding: 0;
+}
+
+@media only screen and (max-width: 749px) {
+  body .sr_banner .banner__heading {
+    font-size: 28px;
+    line-height: normal;
+  }
+}
+
+/* ICON WITH TEXT SECTION CSS START */
+
+.section_icon-with-text .icon-with-text-wrapper .rte ul,
+.section_icon-with-text .icon-with-text-wrapper .rte ol {
+  list-style-position: outside;
+}
+
+.icon-with-text-wrapper.background-primary .icon_with_text_item_wrapper {
+  background: rgb(var(--color-background)) linear-gradient(rgba(var(--color-foreground),.04),rgba(var(--color-foreground),.04));
+  height: 100%;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.icon-with-text-wrapper .icon_with_text_item_image-spacing {
+  padding-top: 2.5rem;
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+}
+
+.icon_with_text_item_info {
+  padding: 1.5rem 2.5rem 2.5rem;
+}
+
+.icon-with-text-wrapper h3, .icon-with-text-wrapper p {
+  margin: 0;
+}
+
+.icon-with-text-wrapper .icon_with_text_item_description {
+  margin-top: 15px;
+}
+
+.icon-with-text-wrapper .title-wrapper-with-link {
+  justify-content: center;
+}
+
+@media only screen and (max-width: 749px) {
+  .section_icon-with-text .title-wrapper-with-link .title {
+    font-size: 28px;
+    line-height: normal;
+  }
+}
+
+/* ICON WITH TEXT SECTION CSS END */

@@ -1,0 +1,122 @@
+.about-info-section {
+  background: var(--bg-color);
+  color: var(--text-color);
+  padding-top: var(--PT);
+  padding-bottom: var(--PB);
+  position: relative;
+  overflow: hidden;
+}
+
+.about-info-section:before, .about-info-section:after {
+  top: 15%;
+  left: -10%;
+  font-size: 630px;
+  content: '';
+  position: absolute;
+  bottom: 0;
+  margin: auto;
+  width: 0.95em;
+  height: 0.95em;
+  background: radial-gradient(circle closest-side, #2B3E8224 30%, rgba(255, 255, 225, 0) 100%);
+  filter: blur(0.08em);
+  display: block !important;
+}
+
+.about-info-section .page-width {
+  position: relative;
+  z-index: 1;
+}
+
+.about-info-section:after {
+  left: auto;
+  right: -10%;
+}
+
+.about-info-section .section-title {
+  color: var(--heading-color);
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.about-info-section .section-title h2 {
+  font-size: 50px;
+}
+
+.about-info-section .about-info-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin: 50px auto 0;
+  max-width: 1100px;
+}
+
+.about-info-section .about-info-left {
+  width: calc(50% - 15px);
+}
+
+.about-info-section .about-info-right {
+  width: calc(50% - 15px);
+  display: flex;
+  align-items: flex-end;
+}
+
+.about-info-section .about-info-left .about-info-text h3 {
+  margin: 0 0 20px;
+  font-family: inherit;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 28px;
+}
+
+.about-info-section .about-info-left .about-info-text p {
+  margin: 0 0 15px;
+  text-align: justify;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.about-info-section .about-info-left .about-info-text p a {
+  color: var(--heading-color);
+  text-decoration: none;
+}
+
+.about-info-image {
+  position: relative;
+  padding: 0 100px;
+}
+
+.about-info-image .ai-img {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  max-width: 200px;
+  left: auto;
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: all 0.8s ease 0.3s;
+}
+
+.about-info-image .ai-img.ai-top-left {
+  top: 10%;
+  max-width: 150px;
+  left: 4%;
+  transition: all 0.8s ease 0.6s;
+  
+}
+
+.about-info-image .ai-img.ai-left-bottom {
+  bottom: 10%;
+  left: -2%;
+  max-width: 230px;
+  transition: all 0.8s ease 0.8s;
+}
+
+.about-info-image .ai-img.ai-right-bottom {
+  transform: translateX(100%)
+}
+
+.about-info-image.visible .ai-img {
+  transform: translateX(0%) !important;
+  opacity: 1;
+}

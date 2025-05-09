@@ -1,0 +1,158 @@
+{{ 'get-to-know.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #section-{{ section.id }} {
+    --bg-color: {{section.settings.bg_color}};
+    --heading-color: {{section.settings.heading_color}};
+    --text-color: {{section.settings.text_color}};
+    
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    #section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{% if section.blocks.size > 0 %}
+  {%- liquid
+    assign height = auto
+    assign sizes = '100vw'
+    assign widths = '350,450,550,650,750'
+    assign fetch_priority = 'high'
+  -%}
+<div class="get-to-know-section" id="section-{{ section.id }}">
+  <div class="page-width">
+    {% if section.settings.title != blank %}
+      <div class="gtk-heading section-title {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+          {% if section.settings.pre_title != blank %}
+            <span class="pre_title">{{ section.settings.pre_title }}</span>
+          {% endif %}
+          {% if section.settings.title != blank %}
+            <h2>{{ section.settings.title }}</h2>
+          {% endif %}
+      </div>  
+    {% endif %}
+    <div class="gtk-list">
+      {% for block in section.blocks %}
+        <div class="gtk-item {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+            <div class="gtk-image">
+              {{ block.settings.image
+                | image_url: width: 750
+                | image_tag: height: height, sizes: sizes, widths: widths, fetchpriority: fetch_priority
+              }}
+            </div>
+            <div class="gtk-text">
+              <h4>{{ block.settings.title }}</h4>
+            </div>
+            {% if block.settings.button_text != blank %}
+                <a class="gtk-link" href="{{ block.settings.url }}">
+                  <span>{{ block.settings.button_text }}</span>
+                </a>
+              {% endif %}
+          </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endif %}
+{% schema %}
+  {
+    "name": "Get To know",
+    "settings": [
+      {
+        "type": "text",
+        "id":"pre_title",
+        "label": "Pre Title",
+        "default":"GET TO KNOW US"
+      },
+      {
+        "type": "text",
+        "id":"title",
+        "label": "Title",
+        "default":"Diamonds That Deserve You"
+      },
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "heading_color",
+        "label": "Heading Color",
+        "default": "#607090"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color",
+        "default": "#000000"
+      },
+      {
+        "type": "header",
+        "content": "Section Padding"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding top",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding bottom",
+        "default": 0
+      }
+    ],
+    "blocks":[
+      {
+        "type":"image",
+        "name":"Banner Item",
+        "limit": 4,
+        "settings": [
+          {
+            "type": "image_picker",
+            "id":"image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id":"title",
+            "label": "Title"
+          },
+          {
+            "type": "text",
+            "id":"button_text",
+            "label": "Link Text",
+            "default":"Explore"
+          },
+          {
+            "type": "url",
+            "id":"url",
+            "label": "Link"
+          }
+        ]
+      }
+    ],
+    "presets":[
+      {
+        "name": "Get To know"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,118 @@
+{{ 'certification-info.css' | asset_url | stylesheet_tag }}
+{% style  %}
+    #section-{{section.id}} {
+        --bg-color:{{ section.settings.bg_color}};
+        --heading-color:{{ section.settings.heading_color}};
+        --text-color:{{ section.settings.text_color}};
+        --PT: {{section.settings.padding_top}}px;
+        --PB: {{section.settings.padding_bottom}}px;
+    }
+    
+{% endstyle %}
+{% if section.blocks.size > 0 %}
+  <div class="certification-info-section" id="section-{{ section.id }}">
+    <div class="page-width">
+      <div class="certification-info-content">
+        <div class="certification-info-list">
+            {% for block in section.blocks %}
+                {% assign text = block.settings.text %}
+                {% assign title = block.settings.title %}
+                {% assign image =  block.settings.image %}
+              
+                {% if title != blank %}
+                  <div class="certification-info-item {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+                    <div class="certification-info-item-box">
+                      <h3>{{ title }}</h3>  
+                      <div class="certification-text">
+                        {{ text }}
+                      </div>
+                      {% if image != blank %}
+                        <div class="certification-img">
+                          <img src="{{ image | image_url: width:250 }}" width="250px" height="auto" alt="{{ image.alt  }}"/>
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                {% endif %}
+              
+            {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Certification Info",
+    "limit":1,
+    "settings": [
+      {
+          "type":"color",
+          "id":"bg_color",
+          "label":"Backgrpund Color",
+          "default": "#ffffff"
+      },
+      {
+          "type":"color",
+          "id":"heading_color",
+          "label":"Heading Color",
+          "default": "#607090"
+      },
+      {
+          "type":"color",
+          "id":"text_color",
+          "label":"Text Color",
+          "default": "#000000"
+      },
+      {
+          "type": "range",
+          "id": "padding_top",
+          "min": 0,
+          "max": 100,
+          "step": 2,
+          "unit": "px",
+          "label": "Padding Top",
+          "default": 50
+      },
+      {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 100,
+          "step": 2,
+          "unit": "px",
+          "label": "Padding Bottom",
+          "default": 50
+      }
+    ],
+    "blocks":[
+      {
+        "type":"image",
+        "name":"Testimonial Item",
+        "settings":[
+          {
+            "type":"text",
+            "id":"title",
+            "label":"Title"
+          },
+          {
+            "type":"richtext",
+            "id":"text",
+            "label":"Text"
+          },
+          {
+            "type":"image_picker",
+            "id":"image",
+            "label":"Image"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name":"Certification Info"
+      }
+    ]
+  }
+{% endschema %}

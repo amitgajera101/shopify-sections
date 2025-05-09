@@ -1,0 +1,58 @@
+.certification-info-section {
+  background: var(--bg-color);
+  color: var(--text-color);
+  padding-top: var(--PT);
+  padding-bottom: var(--PB);
+}
+
+.certification-info-list {
+  display: flex;
+  gap: 30px;
+}
+
+.certification-info-list .certification-info-item {
+  width: calc(50% - 15px);
+  box-shadow: 0 0 15px 2px rgba(0,0,0,0.08);
+  padding: 32px;
+  text-align: center;
+  background: #fff;
+}
+
+.certification-info-item .certification-info-item-box {
+  margin: 0 auto;
+  max-width: 450px;
+  font-size: 16px;
+}
+
+.certification-info-item h3 {
+  font-family: inherit;
+  color: var(--heading-color);
+  font-size: 24px;
+  line-height: 1.4;
+  margin: 0 0 16px;
+}
+
+.certification-info-item p {
+  margin: 0 0 16px;
+}
+
+.certification-text ul {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 16px;
+}
+
+.certification-text ul li {
+  width: calc(50% - 8px);
+}
+
+.certification-text ul a {
+  color: var(--heading-color);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.certification-text ul a:hover {
+  text-decoration: underline;
+}

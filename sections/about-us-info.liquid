@@ -1,0 +1,164 @@
+{{ 'about-info.css' | asset_url | stylesheet_tag }}
+
+{% style  %}
+    #section-{{section.id}} {
+        --bg-color:{{ section.settings.bg_color}};
+        --heading-color:{{ section.settings.heading_color}};
+        --text-color:{{ section.settings.text_color}};
+        --PT: {{section.settings.padding_top}}px;
+        --PB: {{section.settings.padding_bottom}}px;
+    }
+    
+{% endstyle %}
+<div class="about-info-section" id="section-{{ section.id }}">
+  <div class="page-width">
+    {% if section.settings.title != blank %}
+      <div class="section-title">
+        <h2>{{ section.settings.title }}</h2>
+      </div>
+    {% endif %}
+    
+    <div class="about-info-content">
+      <div class="about-info-left">
+          <div class="about-info-text">
+            {{ section.settings.text }}
+          </div>
+      </div>
+      <div class="about-info-right">
+        <div class="about-info-image">
+            {% if section.settings.image != blank %}
+              <div class="about-info-main">
+                <img src="{{ section.settings.image | image_url: width: 750  }}" alt="{{ section.settings.image.alt }}" width="750" height="auto">
+              </div>
+            {% endif %}
+
+            {% if section.settings.left_top != blank %}
+              <div class="ai-img ai-top-left">
+                <img src="{{ section.settings.left_top | image_url: width: 750  }}" alt="{{ section.settings.left_top.alt }}" width="300" height="auto">
+              </div>
+            {% endif %}
+
+            {% if section.settings.left_bottom != blank %}
+              <div class="ai-img ai-left-bottom">
+                <img src="{{ section.settings.left_bottom | image_url: width: 750  }}" alt="{{ section.settings.left_bottom.alt }}" width="300" height="auto">
+              </div>
+            {% endif %}
+
+            {% if section.settings.right_bottom != blank %}
+              <div class="ai-img ai-right-bottom">
+                <img src="{{ section.settings.right_bottom | image_url: width: 750  }}" alt="{{ section.settings.right_bottom.alt }}" width="300" height="auto">
+              </div>
+            {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+<script>
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.8
+      }
+    );
+    
+    // Start observing
+    const target = document.querySelector('.about-info-image');
+    if (target) {
+      observer.observe(target);
+    }
+
+  });
+
+</script>
+{% schema %}
+  {
+    "name": "About Us Info",
+    "settings": [
+        {
+          "type":"text",
+          "id":"title",
+          "label":"Section Title"
+        },
+        {
+          "type":"richtext",
+          "id":"text",
+          "label":"Text"
+        },
+        {
+          "type":"image_picker",
+          "id":"image",
+          "label":"Main Image"
+        },
+        {
+          "type":"image_picker",
+          "id":"left_top",
+          "label":"Left Top Image"
+        },
+        {
+          "type":"image_picker",
+          "id":"left_bottom",
+          "label":"Left Bottom Image"
+        },
+        {
+          "type":"image_picker",
+          "id":"right_bottom",
+          "label":"Right Bottom Image"
+        },
+        {
+          "type":"color",
+          "id":"bg_color",
+          "label":"Backgrpund Color",
+          "default": "#ffffff"
+        },
+        {
+          "type":"color",
+          "id":"heading_color",
+          "label":"Heading Color",
+          "default": "#607090"
+        },
+        {
+          "type":"color",
+          "id":"text_color",
+          "label":"Text Color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "padding_top",
+          "min": 0,
+          "max": 100,
+          "step": 2,
+          "unit": "px",
+          "label": "Padding Top",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 100,
+          "step": 2,
+          "unit": "px",
+          "label": "Padding Bottom",
+          "default": 50
+        }
+    ],
+    "presets": [
+      {
+        "name": "About Us Info"
+      }
+    ]
+  }
+{% endschema %}

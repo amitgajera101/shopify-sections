@@ -1,0 +1,117 @@
+{{ 'usp-info.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #section-{{ section.id }} {
+    --bg-color: {{section.settings.bg_color}};
+    --heading-color: {{section.settings.heading_color}};
+    --text-color: {{section.settings.text_color}};
+    
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    #section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{% if section.blocks.size > 0 %}
+<div class="usp-info-section" id="section-{{ section.id }}">
+  <div class="page-width">
+    <div class="usp-info-list">
+      {% for block in section.blocks %}
+        <div class="usp-info-item {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+          <div class="usp-info-icon">
+            {{ block.settings.usp_icon }}
+          </div>
+          <div class="d-flex flex-column justify-content-center align-items-start ms-2 ms-md-3">
+            <h5>{{ block.settings.usp_title }}</h5>
+            <p>{{ block.settings.usp_text }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endif %}
+{% schema %}
+  {
+    "name": "USP Info",
+    "settings": [
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background Color",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "heading_color",
+        "label": "Heading Color",
+        "default": "#607090"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color",
+        "default": "#000000"
+      },
+      {
+        "type": "header",
+        "content": "Section Padding"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding top",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding bottom",
+        "default": 0
+      }
+    ],
+    "blocks":[
+      {
+        "type":"text",
+        "name":"Item",
+        "settings": [
+          {
+            "type": "textarea",
+            "id":"usp_icon",
+            "label": "Icon",
+            "info":"Add full SVG icon code"
+          },
+          {
+            "type": "text",
+            "id":"usp_title",
+            "label": "Title"
+          },
+          {
+            "type": "text",
+            "id":"usp_text",
+            "label": "Text"
+          }
+        ]
+      }
+    ],
+    "presets":[
+      {
+        "name": "USP Info"
+      }
+    ]
+  }
+{% endschema %}

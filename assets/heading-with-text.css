@@ -1,0 +1,49 @@
+.heading-with-text-section {
+  background: var(--bg-color);
+  color: var(--text-color);
+  padding: 200px 0 100px;
+  text-align: center;
+  position: relative;
+}
+
+.heading-with-text-section .hwt-title h2 {
+  font-size: 54px;
+  margin: 0;
+  font-family: inherit;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1.5;
+}
+
+.heading-with-text-section .hwt-title h2 b {
+  color: var(--heading-color);
+  font-weight: inherit;
+}
+
+.heading-with-text-section .hwt-image {
+  position: absolute;
+  left: 40%;
+  padding-top: 0;
+  height: 90%;
+  top: 10%;
+  max-width: 90%;
+  display: flex;
+}
+
+.heading-with-text-section .hwt-image img {
+  opacity: 0.38;
+}
+
+.heading-with-text-section .hwt-title {
+  position: relative;
+  z-index: 1;
+}
+
+.heading-with-text-section .hwt-image img {
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.hwt-image {
+}

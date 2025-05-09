@@ -1,0 +1,171 @@
+{{ 'cvd-info.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #section-{{ section.id }} {
+    --bg-color: {{section.settings.bg_color}};
+    --heading-color: {{section.settings.heading_color}};
+    --text-color: {{section.settings.text_color}};
+    
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    #section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="cvd-info-section" id="section-{{ section.id }}">
+  <div class="page-width">
+    {% if section.settings.title != blank %}
+      <div class="cvd-info-heading {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+        <h2>{{ section.settings.title }}</h2>
+      </div>
+    {% endif %}
+    <div class="cvd-info-content">
+       <div class="cvd-info-left {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+          {% if section.settings.year_count != blank %}
+            <div class="cvd-info-year-count">
+                <span class="count-number" data-start-value="01" data-end-value="{{ section.settings.year_count }}" data-speed="2000">01</span>
+                <span>+</span>
+            </div> 
+            <div class="cvd-info-year-text">
+                {{ section.settings.year_text }}
+            </div>
+          {% endif %}  
+       </div>
+      {% if section.settings.text != blank %}
+        <div class="cvd-info-right {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+            {{ section.settings.text }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", (event) => {
+    function animateCounter(el) {
+      const start = parseInt(el.dataset.startValue) || 0;
+      const end = parseInt(el.dataset.endValue) || 0;
+      const duration = parseInt(el.dataset.speed) || 2000;
+      const totalSteps = end - start;
+      const stepTime = Math.abs(Math.floor(duration / totalSteps));
+      const padLength = end.toString().length;
+    
+      let current = start;
+    
+      const counter = setInterval(() => {
+        current++;
+        el.textContent = current.toString().padStart(padLength, '0');
+        if (current >= end) {
+          clearInterval(counter);
+        }
+      }, stepTime);
+    }
+    
+    // IntersectionObserver for visibility trigger
+    const counters = document.querySelectorAll('.cvd-info-year-count .count-number');
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+            animateCounter(entry.target);
+            entry.target.classList.add('counted');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.6
+      }
+    );
+    
+    // Observe counters
+    counters.forEach(counter => observer.observe(counter));
+
+
+  });  
+
+</script>
+
+{% schema %}
+  {
+    "name": "CVD Info",
+    "settings": [
+      {
+        "type": "text",
+        "id":"title",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id":"text",
+        "label": "Text",
+        "default":"<p>Lorem Ipsum text Lorem Ipsum text Lorem Ipsum text Lorem Ipsum text Lorem Ipsum text Lorem Ipsum text Lorem Ipsum text</p>"
+      },
+      {
+        "type": "text",
+        "id":"year_count",
+        "label": "Year Count",
+        "default":"25"
+      },
+      {
+        "type": "text",
+        "id":"year_text",
+        "label": "Year Text",
+        "default":"Years in the Diamond Industry"
+      },
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background Color",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "heading_color",
+        "label": "Heading Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "header",
+        "content": "Section Padding"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding top",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding bottom",
+        "default": 0
+      }
+    ],
+    "presets":[
+      {
+        "name": "CVD Info"
+      }
+    ]
+  }
+{% endschema %}
